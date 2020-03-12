@@ -6,14 +6,12 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $student = student ::all();
+        //$student = student::orderBy('id','desc')->get();
+        $cout=student::count();
+        return view('student.index',['student'=>$student,'count'=>$count]);
     }
 
     /**
@@ -79,6 +77,8 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //student::find($id)->delete;
+        student::destroy($id);
+        return back ();
     }
 }
